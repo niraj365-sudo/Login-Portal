@@ -29,7 +29,8 @@ app.use(express.urlencoded({
   extended: false
 }))
 
-
+console.log(new Date);
+ 
 //Routes
 app.use("/", indexRoute);
 app.use("/users", userRoute);
