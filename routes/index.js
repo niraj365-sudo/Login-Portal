@@ -8,7 +8,10 @@ router.get("/", (req, res) => {
 });
 
 router.get("/dashboard",(req,res)=>{
-  res.render("dashboard")
+  const user = {
+    name: "Niraj Paudel"
+  }
+  res.render("dashboard",{user})
 })
 
 module.exports = router;

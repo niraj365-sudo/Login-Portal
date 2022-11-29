@@ -13,7 +13,7 @@ router.get('/register',(req,res)=>{
 //Register handle
 router.post('/register',(req,res)=>{
     const {name, email, password, password2}= req.body
-
+    console.log(req.body);
     let errors = []
 
     //Check require fields
@@ -30,10 +30,10 @@ router.post('/register',(req,res)=>{
     //Check password length
     if (password.length <6) {
         errors.push({msg: "Password should be atleast of 6 characters."})
+    }
 
-
-    if (errors.length > 0) {
-        res.render('register',{
+        if (errors.length > 0) {
+       return res.render('register',{
             errors,
             name,
             email,
@@ -43,10 +43,9 @@ router.post('/register',(req,res)=>{
         })
         
     } else {
-        res.send('pass')
+        return res.redirect('/dashboard')
     }
         
-    }
 })
 
 module.exports = router;

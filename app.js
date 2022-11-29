@@ -13,7 +13,8 @@ const db = require('./config/keys').MongoURI;
 
 //Database connection
 moongoose.connect(db, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 
 }).then(()=>console.log("Connected to database.")).catch(err => console.log(err))
 
