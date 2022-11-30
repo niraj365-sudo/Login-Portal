@@ -29,7 +29,7 @@ router.post('/register',async(req,res)=>{
         }
         
         
-       // console.log(req.body);
+        console.log(req.body);
         let errors = []
         
         //Check require fields

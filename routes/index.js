@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
-
+const { ensureAuthenticated} = require('../config/auth');
 //router.get('/',(req,res)=>res.render('welcome'))
 
+//Welcome Page
 router.get("/", (req, res) => {
   res.render("welcome");
 });
 
-router.get("/dashboard",(req,res)=>{
+//Dashboard
+router.get("/dashboard",ensureAuthenticated, (req,res)=>{
   const user = {
     name: req.body.name
 
