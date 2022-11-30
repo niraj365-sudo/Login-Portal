@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users')
 const bcrypt = require('bcryptjs')
+const passport = require('passport')
 
 //Route for login
 router.get('/login',(req,res)=>{
@@ -22,11 +23,13 @@ router.post('/register',async(req,res)=>{
             res.send('Error!!',err)
         }
         if(user){
-            res.send('User already registered.')
+            req.flash('error_msg','Email already registered');
+            return res.redirect('/users/register')
+           // res.send('User already registered.')
         }
         
         
-        console.log(req.body);
+       // console.log(req.body);
         let errors = []
         
         //Check require fields
@@ -71,6 +74,7 @@ router.post('/register',async(req,res)=>{
                 console.log(data);
                 
             })
+            req.flash('success_msg','You are now registered');
             return res.redirect('/users/login')
             
         } catch (error) {
@@ -105,34 +109,56 @@ router.get("/alluser",async(req,res)=>{
     }
 })
 
-//Signin
-router.post('/login', async (req,res)=>{
-    try {
-        User.findOne({
-            email: req.body.email
-        }).exec( async (err,user)=>{
-            if(err){
-                throw err;
-            }
-            if(user){
-                const isPassword = await bcrypt.compare(req.body.password, user.password)
+// //Signin
+// router.post('/login', async (req,res)=>{
+//     try {
+//         User.findOne({
+//             email: req.body.email
+//         }).exec( async (err,user)=>{
+//             if(err){
+//                 throw err;
+//             }
+//             if(user){
+//                 const isPassword = await bcrypt.compare(req.body.password, user.password)
                 
-                console.log(req.body.password);
-                console.log(isPassword);
-                if (isPassword) {
+//                 console.log(req.body.password);
+//                 console.log(isPassword);
+//                 if (isPassword) {
                     
-                  return  res.redirect('/dashboard')
+//                   return  res.redirect('/dashboard')
                     
-                }
-             return   res.send('Password doesnot match')
-            }
-          return  res.send('User not found')
-        })
-    } catch (error) {
-        res.send('Something went wrong!')
-        console.log(error);
-    }
+//                 }
+//              return   res.send('Password doesnot match')
+//             }
+//           return  res.send('User not found')
+//         })
+//     } catch (error) {
+//         res.send('Something went wrong!')
+//         console.log(error);
+//     }
    
+// })
+
+//Login Handle
+router.post('/login',(req, res, next)=>{
+    passport.authenticate('local',{
+        successRedirect: '/dashboard',
+        failureReidrect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
+})
+
+//Logout Handle
+router.get('/logout',(req, res)=>{
+    req.logout((err)=>{
+        if(err){
+            throw err
+
+        }
+        req.flash('success_msg','You are logged out')
+        res.redirect('/users/login')
+        
+    });
 })
 
 

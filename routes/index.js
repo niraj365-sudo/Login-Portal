@@ -9,8 +9,10 @@ router.get("/", (req, res) => {
 
 router.get("/dashboard",(req,res)=>{
   const user = {
-    name: "Niraj Paudel"
+    name: req.body.name
+
   }
+  console.log("Name");
   res.render("dashboard",{user})
 })
 
