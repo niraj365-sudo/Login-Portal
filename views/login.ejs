@@ -74,7 +74,7 @@
     </div>
     <div class="Second_Section">
       <%- include('./partials/message.ejs'); %>
-        <form>
+        <form action="/users/login" method="POST">
         <div class="first" style="margin-top:11 px">
             <!-- <label>Email</label> -->
             <input type="email" placeholder="Enter your email" id="email" name="email">
@@ -94,10 +94,8 @@
 
         <div class="last">
             <!-- <label></label> -->
-            <a href="/">
-            <input type="submit" value="LOG IN" id="submit" name="submit"
+            <input type="submit" " id="submit" name="submit"
                 style="width: 355px; background-color: #0165E1; font-weight: bold; color:white">
-            </a>
         </div>
     </form>
     </div>
