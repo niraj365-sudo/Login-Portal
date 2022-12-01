@@ -23,9 +23,9 @@ router.post('/register',async(req,res)=>{
             res.send('Error!!',err)
         }
         if(user){
-            req.flash('error_msg','Email already registered');
+           // req.flash('error_msg','Email already registered');
+           res.send('User already registered.')
             return res.redirect('/users/register')
-           // res.send('User already registered.')
         }
         
         
