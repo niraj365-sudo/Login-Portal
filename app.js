@@ -30,6 +30,8 @@ moongoose.connect(db, {
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use("/public", express.static("./public"));
 
 //BodyParser
 app.use(express.json())
