@@ -13,16 +13,17 @@
 }
 
 .Second_Section {
+  
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   font-size: 20px;
-  border: 1px solid rgb(238, 228, 228);
+  border: 1px solid rgba(238, 228, 228, 0.367);
   padding: 32px;
   border: none;
   border-radius: 11px;
-  width: 23%;
+  width: 26.692708333333332vw;
   margin-right: 150px;
   box-shadow: 4px 3px 10px 0px #0166e140;
   margin-left: 50px;
@@ -41,7 +42,7 @@ input {
   border-radius: 9px;
   border: none;
   padding-left: 10px;
-  width: 345px;
+  width: 352px;
   height: 40px;
   margin-top: 10px;
 }
@@ -64,6 +65,8 @@ color:white;
 font-weight: bold;
 cursor: pointer;
 }
-#submit:hover{
-  color:rgb(212, 204, 204)
+.newUser{
+  width: 352px;
+  height: 40px;
+  padding-top: 17px;
 }
